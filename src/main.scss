@@ -1,25 +1,178 @@
-body {
+.main-page {
   margin: 0;
   font-family: "Prompt", sans-serif;
+  background-image: url(../src/assets/images/bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 40px;
 }
 
 html,
 body,
 #root {
   height: 100%;
+  margin: 0px;
 }
-
 .app {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+.logo {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .container {
   width: 90%;
   height: 90vh;
   background-color: white;
   border-radius: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.title {
   margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 37px;
+  color: #383838;
+  font-weight: bold;
+}
+
+.input {
+  height:60px;
+  color: #4e4e4e;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  font-size: 34px;
+  width: 80%;
+  margin-top: 40px;
+  font-family: "Prompt", sans-serif;
+}
+
+.button {
+  color:white;
+  font-size: 37px;
+  font-weight: bold;
+  font-family: "Prompt", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  padding: 16px 32px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 40px;
+  border: #c41417;
+
+}
+
+.submitbutton {
+  background-image: radial-gradient(ellipse farthest-corner at top left, #c41417 0%, #b31315 100%);
+  color: white;
+  transition-duration: 0.5s;
+
+}
+
+
+.submitbutton2 {
+  background-image: radial-gradient(ellipse farthest-corner at top left, #c41417 0%, #b31315 100%);
+  color: white;
+  transition-duration: 0.5s;
+  margin-top: 120px;
+
+}
+
+.button:hover {
+  background-color:#6f6f6f;
+  color: #6f6f6f;
+}
+
+.link {
+  font-weight: bold;
+  margin-top: 40px;
+  font-size: 37px; 
+  color: #6f6f6f;
+} 
+
+.linkstyle:hover {
+  color: #c41417;
+  cursor: pointer;
+}
+
+.button-container{
+  gap: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.roomtitle {
+  font-size: 37px;
+  font-weight: bold;
+}
+
+.chatroom-container {
+  width: 100%;
+  height: 100%;
+}
+
+.chat-background {
+  width: 100%;
+  height: 90%;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+ 
+
+  
+
+#sentbox{
+  width: 100%;
+  height: 60px;
+  color: #4e4e4e;
+  background-color: white;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  font-size: 34px;
+  font-family: "Prompt", sans-serif;
+}
+
+#sentbox::placeholder {
+  font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  right: 6px;
+}
+
+.bublemessage {
+  padding: 20px;
+  width: 10%;
+  height: 90%;
+  background-color: #e7e7e7;
+  border-radius: 20px;
+}
+
+.buble-container {
+  padding: 20px;
+}
+
+.bublename {
+  color:#6f6f6f;
+}
+
+.message {
+  color:#383838;
+  font-size: 20px;
+  text-align: center; 
 }
