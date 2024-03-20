@@ -16,8 +16,8 @@ import ChatRoom from "./components/ChatRoom";
 function App() {
   const [inputName, setInputName] = useState("");
   const [user, setUser] = useState({});
-  const [appScreen, setAppScreen] = useState("chat");
-  const [roomName, setRoomName] = useState("test");
+  const [appScreen, setAppScreen] = useState("user");
+  const [roomName, setRoomName] = useState("");
 
   const saveUser = () => {
     setUser({ name: inputName });
