@@ -1,26 +1,31 @@
 import React, { useState } from "react";
 import Proxumerlogo from "../src/assets/images/logo.png";
-import { gql, useQuery, useMutation } from "@apollo/client";
+import { gql,useMutation } from "@apollo/client";
 import CreateRoom from "./components/CreateRoom";
 import ChatRoom from "./components/ChatRoom";
 
-// const ADD_TODO = gql`
-//   mutation AddTodo($type: String!) {
-//     addTodo(type: $type) {
-
-//       }
-//     }
-//   }
-// `;
+// I have mutation called CreateRoom and the name of value is Name type string
+// I want to createRoom in strapi..
+const CREATE_ROOM = gql`
+  mutation CreateRoom($name: String!) {
+    createRoom(data: { name: $name }) {
+      data {
+        attributes {
+          name
+        }
+      }
+    }
+  }
+`;
 
 function App() {
   const [inputName, setInputName] = useState("");
-  const [user, setUser] = useState({});
   const [appScreen, setAppScreen] = useState("user");
   const [roomName, setRoomName] = useState("");
 
+  const [createRoom] = useMutation(CREATE_ROOM);
+
   const saveUser = () => {
-    setUser({ name: inputName });
     setAppScreen("actions");
   };
 
@@ -34,15 +39,18 @@ function App() {
     setAppScreen("join");
   };
 
-  const goChatRoom = () => {
+  // if (loading) return "Loading...";
+  // if (error) return `Error! ${error.message}`;
+
+  //when create new room and submit go to chat..
+  const createChatRoom = () => {
+    createRoom({ variables: { name: roomName }});
     setAppScreen("chat");
   };
 
-  //let input;
-  // const [addTodo, { data, loading, error }] = useMutation(ADD_TODO);
-
-  // if (loading) return "Loading...";
-  // if (error) return `Error! ${error.message}`;
+  const joinChatRoom = () => {
+    setAppScreen("chat");
+  }
 
   return (
     <div className="main-page">
@@ -75,7 +83,7 @@ function App() {
           {appScreen === "actions" && (
             <>
               <div className="title">
-                <div>{`คุณ ${user.name}`}</div>
+                <div>{`คุณ ${inputName}`}</div>
               </div>
               <button
                 className="button submitbutton2"
@@ -101,12 +109,13 @@ function App() {
               <CreateRoom
                 onRoomChange={(e) => setRoomName(e.target.value)}
                 onCreate={() => {
-                  goChatRoom();
+                  createChatRoom();
                 }}
                 onBack={goback}
               />
             </>
           )}
+
           {appScreen === "join" && (
             <>
               <div className="title">
@@ -115,7 +124,7 @@ function App() {
               <input
                 className="input"
                 onChange={(e) => {
-                  setInputName(e.target.value);
+                  setRoomName(e.target.value);
                 }}
               />
               <div className="button-container">
@@ -127,16 +136,19 @@ function App() {
                 >
                   {"กลับ"}
                 </a>
-                <button className="button submitbutton" onClick={saveUser}>
+                <button className="button submitbutton" onClick={joinChatRoom}>
                   {"ยืนยัน"}
                 </button>
               </div>
             </>
           )}
-          {appScreen === "chat" && 
-          <ChatRoom 
-          roomName={roomName} 
-          />}
+
+          {appScreen === "chat" &&
+            <ChatRoom 
+              roomName={roomName}
+              user={inputName}
+            />
+          }
         </div>
       </div>
     </div>

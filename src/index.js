@@ -7,7 +7,6 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  gql,
   HttpLink,
 } from "@apollo/client";
 
@@ -18,29 +17,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-client
-  .query({
-    query: gql`
-      query Messages {
-        messages {
-          data {
-            id
-            attributes {
-              user
-              message
-            }
-          }
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result))
-  .catch((e) => console.log("apollo err", e));
-
 ReactDOM.render(
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,
-document.getElementById("root"));
+  document.getElementById("root")
+);
 
 serviceWorker.unregister();
